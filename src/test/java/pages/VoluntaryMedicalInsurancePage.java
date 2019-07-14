@@ -63,22 +63,23 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
     }
 
     public VoluntaryMedicalInsurancePage sendRequest(){
-        Click(sendRequest);
+        click(sendRequest);
         return this;
     }
 
     public VoluntaryMedicalInsurancePage checkPageForText(String text){
-        Assert.assertTrue(CheckPageContainsText(text));
+        Assert.assertTrue(checkPageContainsText(text));
         return this;
     }
 
     public VoluntaryMedicalInsurancePage fillInTheForm(JSONObject jsonObject){
-        SetText(lastName, jsonObject.get("lastName").toString());
-        SetText(firstName, jsonObject.get("firstName").toString());
-        SetText(middleName, jsonObject.get("middleName").toString());
-        SetText(phoneNumber, jsonObject.get("phoneNumber").toString());
-        SetText(email, jsonObject.get("email").toString());
-        SetText(comment, jsonObject.get("comment").toString());
+        setText(lastName, jsonObject.get("lastName").toString());
+        setText(firstName, jsonObject.get("firstName").toString());
+        setText(middleName, jsonObject.get("middleName").toString());
+        setText(phoneNumber, jsonObject.get("phoneNumber").toString());
+        setText(email, jsonObject.get("email").toString());
+        setText(comment, jsonObject.get("comment").toString());
+
         Select select = new Select(region);
         select.selectByValue("77");
 
@@ -86,16 +87,16 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
     }
 
     public VoluntaryMedicalInsurancePage checkForm(JSONObject jsonObject){
-        Assert.assertTrue("1",CheckEqualsText(lastName, jsonObject.get("lastName").toString()));
-        Assert.assertTrue("2",CheckEqualsText(firstName, jsonObject.get("firstName").toString()));
-        Assert.assertTrue("3",CheckEqualsText(middleName, jsonObject.get("middleName").toString()));
-        Assert.assertTrue(CheckEqualsText(phoneNumber, "+7" + jsonObject.get("phoneNumber").toString()));
-        Assert.assertTrue("4",CheckEqualsText(email, jsonObject.get("email").toString()));
-        Assert.assertTrue("5",CheckEqualsText(comment, jsonObject.get("comment").toString()));
+        Assert.assertTrue(checkEqualsText(lastName, jsonObject.get("lastName").toString()));
+        Assert.assertTrue(checkEqualsText(firstName, jsonObject.get("firstName").toString()));
+        Assert.assertTrue(checkEqualsText(middleName, jsonObject.get("middleName").toString()));
+        Assert.assertTrue(checkEqualsText(phoneNumber, "+7" + jsonObject.get("phoneNumber").toString()));
+        Assert.assertTrue(checkEqualsText(email, jsonObject.get("email").toString()));
+        Assert.assertTrue(checkEqualsText(comment, jsonObject.get("comment").toString()));
         Select select = new Select(region);
 
         Assert.assertTrue(select.getAllSelectedOptions().contains(msk));
-        Click(consent);
+        click(consent);
 
         Actions actions = new Actions(this.webDriver);
         actions.moveToElement(sendRequest).click().build().perform();
@@ -103,7 +104,7 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
         Assert.assertTrue(errorText.getText().contains("Введите адрес электронной почты"));
 
         email.clear();
-        SetText(email, jsonObject.get("email").toString() + "@qwerty.ru");
+        setText(email, jsonObject.get("email").toString() + "@qwerty.ru");
 
         return this;
     }

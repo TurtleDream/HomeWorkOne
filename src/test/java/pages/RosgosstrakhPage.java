@@ -23,7 +23,7 @@ public class RosgosstrakhPage extends BasePage {
     }
 
     public void goToVMI(){
-        Click(insurance);
-        Click(voluntaryMedicalInsurance);
+        click(insurance);
+        click(voluntaryMedicalInsurance);
     }
 }
