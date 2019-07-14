@@ -102,6 +102,9 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
 
         Assert.assertTrue(errorText.getText().contains("Введите адрес электронной почты"));
 
+        email.clear();
+        SetText(email, jsonObject.get("email").toString() + "@qwerty.ru");
+
         return this;
     }
 
