@@ -89,7 +89,7 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
         Assert.assertTrue(CheckEqualsText(lastName, jsonObject.get("lastName").toString()));
         Assert.assertTrue(CheckEqualsText(firstName, jsonObject.get("firstName").toString()));
         Assert.assertTrue(CheckEqualsText(middleName, jsonObject.get("middleName").toString()));
-        Assert.assertTrue(CheckEqualsText(phoneNumber, jsonObject.get("phoneNumber").toString()));
+        //Assert.assertTrue(CheckEqualsText(phoneNumber, jsonObject.get("phoneNumber").toString()));
         Assert.assertTrue(CheckEqualsText(email, jsonObject.get("email").toString()));
         Assert.assertTrue(CheckEqualsText(comment, jsonObject.get("comment").toString()));
         Select select = new Select(region);
@@ -97,7 +97,7 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
         Assert.assertTrue(select.getAllSelectedOptions().contains(msk));
         Click(consent);
         //Click(sendRequest);
-        Actions actions = new Actions(webDriver);
+        Actions actions = new Actions(this.webDriver);
         actions.moveToElement(sendRequest).click().build().perform();
 
         Assert.assertTrue(errorText.getText().contains("Введите адрес электронной почты"));

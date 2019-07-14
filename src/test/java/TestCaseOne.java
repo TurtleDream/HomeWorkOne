@@ -11,8 +11,8 @@ public class TestCaseOne extends BaseTest {
         RosgosstrakhPage rosgosstrakhPage = new RosgosstrakhPage(webDriver);
         VoluntaryMedicalInsurancePage voluntaryMedicalInsurancePage = new VoluntaryMedicalInsurancePage(webDriver);
         JSONObject personalInfo = new JSONObject();
-        personalInfo.put("firstName", "Иван");
         personalInfo.put("lastName", "Иванов");
+        personalInfo.put("firstName", "Иван");
         personalInfo.put("middleName", "Иванович");
         personalInfo.put("phoneNumber", "9876543210");
         personalInfo.put("email", "qwertyqwerty");
@@ -26,9 +26,10 @@ public class TestCaseOne extends BaseTest {
                 .checkTitle()
                 .sendRequest();
 
-        voluntaryMedicalInsurancePage
-                .checkPageForText("Заявка на добровольное медицинское страхование")
-                .fillInTheForm(personalInfo)
-                .checkForm(personalInfo);
+        voluntaryMedicalInsurancePage.checkPageForText("Заявка на добровольное медицинское страхование");
+
+        voluntaryMedicalInsurancePage.fillInTheForm(personalInfo);
+
+        voluntaryMedicalInsurancePage.checkForm(personalInfo);
     }
 }

@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
     protected WebDriver webDriver;
-    protected WebDriverWait webDriverWaitVisible;
-    protected WebDriverWait webDriverWaitClickable;
+    private WebDriverWait webDriverWaitVisible;
+    private WebDriverWait webDriverWaitClickable;
 
     public BasePage(WebDriver webDriver){
         this.webDriver = webDriver;
@@ -18,38 +18,34 @@ public class BasePage {
         webDriverWaitClickable = new WebDriverWait(webDriver, 15);
     }
 
-    public void wait (WebElement webElement){
-        webDriverWaitVisible.until(ExpectedConditions.elementToBeClickable(webElement));
+    private void wait (WebElement webElement){
+        webDriverWaitVisible.until(ExpectedConditions.visibilityOf(webElement));
         webDriverWaitClickable.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    public void Click(WebElement webElement){
+    protected void Click(WebElement webElement){
         wait(webElement);
         webElement.click();
     }
 
-    public boolean CheckPageContainsText(String text){
-        try {
-            webDriver.getPageSource().contains(text);
+    protected boolean CheckPageContainsText(String text){
+        if(webDriver.getPageSource().contains(text)){
             return true;
         }
-        catch (Exception exception){
-            return false;
-        }
+        else return false;
     }
 
 
-    public boolean CheckEqualsText(WebElement webElement,String text){
-        try {
-            webElement.getText().equals(text);
+    protected boolean CheckEqualsText(WebElement webElement, String text){
+        if(webElement.getText().equals(text)){
             return true;
         }
-        catch (Exception exception){
-            return false;
-        }
+        else return false;
     }
 
-    public void SetText(WebElement webElement, String text){
+    protected synchronized void SetText(WebElement webElement, String text){
+        wait(webElement);
+        webElement.click();
         webElement.sendKeys(text);
     }
 }
