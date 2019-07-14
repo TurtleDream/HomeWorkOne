@@ -14,7 +14,7 @@ public class TestCaseOne extends BaseTest {
         personalInfo.put("lastName", "Иванов");
         personalInfo.put("firstName", "Иван");
         personalInfo.put("middleName", "Иванович");
-        personalInfo.put("phoneNumber", "9876543210");
+        personalInfo.put("phoneNumber", " (987) 654-32-10");
         personalInfo.put("email", "qwertyqwerty");
         personalInfo.put("comment", "Здесь могла быть ваша реклама");
 

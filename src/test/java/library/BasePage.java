@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.datatransfer.Clipboard;
+
 public class BasePage {
     protected WebDriver webDriver;
     private WebDriverWait webDriverWaitVisible;
@@ -29,18 +31,12 @@ public class BasePage {
     }
 
     protected boolean CheckPageContainsText(String text){
-        if(webDriver.getPageSource().contains(text)){
-            return true;
-        }
-        else return false;
+        return webDriver.getPageSource().contains(text);
     }
 
 
     protected boolean CheckEqualsText(WebElement webElement, String text){
-        if(webElement.getText().equals(text)){
-            return true;
-        }
-        else return false;
+        return webElement.getAttribute("value").equals(text);
     }
 
     protected synchronized void SetText(WebElement webElement, String text){

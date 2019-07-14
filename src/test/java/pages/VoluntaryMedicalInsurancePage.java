@@ -86,17 +86,17 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
     }
 
     public VoluntaryMedicalInsurancePage checkForm(JSONObject jsonObject){
-        Assert.assertTrue(CheckEqualsText(lastName, jsonObject.get("lastName").toString()));
-        Assert.assertTrue(CheckEqualsText(firstName, jsonObject.get("firstName").toString()));
-        Assert.assertTrue(CheckEqualsText(middleName, jsonObject.get("middleName").toString()));
-        //Assert.assertTrue(CheckEqualsText(phoneNumber, jsonObject.get("phoneNumber").toString()));
-        Assert.assertTrue(CheckEqualsText(email, jsonObject.get("email").toString()));
-        Assert.assertTrue(CheckEqualsText(comment, jsonObject.get("comment").toString()));
+        Assert.assertTrue("1",CheckEqualsText(lastName, jsonObject.get("lastName").toString()));
+        Assert.assertTrue("2",CheckEqualsText(firstName, jsonObject.get("firstName").toString()));
+        Assert.assertTrue("3",CheckEqualsText(middleName, jsonObject.get("middleName").toString()));
+        Assert.assertTrue(CheckEqualsText(phoneNumber, "+7" + jsonObject.get("phoneNumber").toString()));
+        Assert.assertTrue("4",CheckEqualsText(email, jsonObject.get("email").toString()));
+        Assert.assertTrue("5",CheckEqualsText(comment, jsonObject.get("comment").toString()));
         Select select = new Select(region);
 
         Assert.assertTrue(select.getAllSelectedOptions().contains(msk));
         Click(consent);
-        //Click(sendRequest);
+
         Actions actions = new Actions(this.webDriver);
         actions.moveToElement(sendRequest).click().build().perform();
 
