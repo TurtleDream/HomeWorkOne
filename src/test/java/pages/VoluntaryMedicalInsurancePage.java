@@ -87,14 +87,44 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
     }
 
     public VoluntaryMedicalInsurancePage checkForm(JSONObject jsonObject){
-        Assert.assertTrue(checkEqualsText(lastName, jsonObject.get("lastName").toString()));
-        Assert.assertTrue(checkEqualsText(firstName, jsonObject.get("firstName").toString()));
-        Assert.assertTrue(checkEqualsText(middleName, jsonObject.get("middleName").toString()));
-        Assert.assertTrue(checkEqualsText(phoneNumber, "+7" + jsonObject.get("phoneNumber").toString()));
-        Assert.assertTrue(checkEqualsText(email, jsonObject.get("email").toString()));
-        Assert.assertTrue(checkEqualsText(comment, jsonObject.get("comment").toString()));
-        Select select = new Select(region);
+        Assert.assertEquals(
+                "\nError! \nExpected: "
+                        + jsonObject.get("lastName").toString() +"\n Actualy: "
+                        + lastName,
+                lastName,
+                jsonObject.get("lastName").toString());
+        Assert.assertEquals(
+                "\nError! \nExpected: "
+                        + jsonObject.get("firstName").toString() +"\n Actualy: "
+                        + firstName,
+                firstName,
+                jsonObject.get("firstName").toString());
+        Assert.assertEquals(
+                "\nError! \nExpected: "
+                        + jsonObject.get("middleName").toString() +"\n Actualy: "
+                        + middleName,
+                middleName,
+                jsonObject.get("middleName").toString());
+        Assert.assertEquals(
+                "\nError! \nExpected: +7"
+                        + jsonObject.get("phoneNumber").toString() +"\n Actualy: "
+                        + phoneNumber,
+                phoneNumber,
+                "+7" + jsonObject.get("phoneNumber").toString());
+        Assert.assertEquals(
+                "\nError! \nExpected: "
+                        + jsonObject.get("email").toString() +"\n Actualy: "
+                        + email,
+                email,
+                jsonObject.get("email").toString());
+        Assert.assertEquals(
+                "\nError! \nExpected: "
+                        + jsonObject.get("comment").toString() +"\n Actualy: "
+                        + comment,
+                comment,
+                jsonObject.get("comment").toString());
 
+        Select select = new Select(region);
         Assert.assertTrue(select.getAllSelectedOptions().contains(msk));
         click(consent);
 
@@ -108,5 +138,4 @@ public class VoluntaryMedicalInsurancePage extends BasePage {
 
         return this;
     }
-
 }
